@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap');
+@import "tailwindcss";
+
+/* ─── Design Tokens ───────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Surfaces */
+    --color-canvas:   #faf9f7;
+    --color-surface:  #ffffff;
+    --color-raised:   #f5f4f1;
+    --color-overlay:  rgba(15,10,5,0.04);
+
+    /* Ink */
+    --color-ink-900:  #0f0a05;
+    --color-ink-700:  #2d2620;
+    --color-ink-500:  #6b6560;
+    --color-ink-300:  #b0a9a4;
+    --color-ink-100:  #e8e4e0;
+
+    /* Brand – restrained violet */
+    --color-violet-700: #4c1d95;
+    --color-violet-600: #6d28d9;
+    --color-violet-500: #7c3aed;
+    --color-violet-400: #8b5cf6;
+    --color-violet-100: #ede9fe;
+    --color-violet-50:  #f5f3ff;
+
+    /* Semantic */
+    --color-emerald-600: #059669;
+    --color-emerald-50:  #ecfdf5;
+    --color-rose-600:    #e11d48;
+    --color-rose-50:     #fff1f2;
+    --color-amber-600:   #d97706;
+    --color-amber-50:    #fffbeb;
+    --color-sky-600:     #0284c7;
+    --color-sky-50:      #f0f9ff;
+
+    /* Border */
+    --border-subtle:  rgba(15,10,5,0.08);
+    --border-default: rgba(15,10,5,0.12);
+    --border-strong:  rgba(15,10,5,0.20);
+
+    /* Shadows */
+    --shadow-xs:  0 1px 2px rgba(15,10,5,0.04);
+    --shadow-sm:  0 1px 3px rgba(15,10,5,0.08), 0 1px 2px rgba(15,10,5,0.04);
+    --shadow-md:  0 4px 12px rgba(15,10,5,0.08), 0 2px 4px rgba(15,10,5,0.04);
+    --shadow-lg:  0 12px 32px rgba(15,10,5,0.10), 0 4px 8px rgba(15,10,5,0.06);
+    --shadow-violet: 0 4px 14px rgba(109,40,217,0.20);
+
+    /* Radii */
+    --radius-sm:  6px;
+    --radius-md:  10px;
+    --radius-lg:  14px;
+    --radius-xl:  18px;
+    --radius-full: 9999px;
+
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+
+    /* Motion */
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-fast: 120ms;
+    --duration-base: 200ms;
+    --duration-slow: 320ms;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-color: var(--border-subtle);
+  }
+
+  html {
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: var(--color-ink-700);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-ink-900);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  ::selection {
+    background-color: var(--color-violet-100);
+    color: var(--color-violet-700);
+  }
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-100);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-300);
+}
+
+/* ─── Focus Ring ──────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-violet-400);
+  outline-offset: 2px;
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.animate-fade-up    { animation: fade-up   var(--duration-slow) var(--ease-smooth) both; }
+.animate-fade-in    { animation: fade-in   var(--duration-base) var(--ease-smooth) both; }
+.animate-scale-in   { animation: scale-in  var(--duration-base) var(--ease-spring) both; }
+.animate-spin       { animation: spin 0.8s linear infinite; }
+.animate-pulse-dot  { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* Stagger helpers */
+.stagger-1  { animation-delay: 0ms; }
+.stagger-2  { animation-delay: 60ms; }
+.stagger-3  { animation-delay: 120ms; }
+.stagger-4  { animation-delay: 180ms; }
+.stagger-5  { animation-delay: 240ms; }
+.stagger-6  { animation-delay: 300ms; }
+
+/* Shimmer for skeleton */
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--color-raised) 25%,
+    var(--color-ink-100) 50%,
+    var(--color-raised) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Utility Classes ─────────────────────────────────────────────────────── */
+.surface-card {
+  background: var(--color-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+}
+
+.surface-raised {
+  background: var(--color-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.text-ink-900  { color: var(--color-ink-900); }
+.text-ink-700  { color: var(--color-ink-700); }
+.text-ink-500  { color: var(--color-ink-500); }
+.text-ink-300  { color: var(--color-ink-300); }
+.text-violet   { color: var(--color-violet-600); }
+
+.bg-canvas   { background-color: var(--color-canvas); }
+.bg-surface  { background-color: var(--color-surface); }
+
+/* ─── Print ───────────────────────────────────────────────────────────────── */
+@media print {
+  aside, header, button, .no-print { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  main { padding: 0 !important; }
+}

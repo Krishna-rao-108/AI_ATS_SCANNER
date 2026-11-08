@@ -1,0 +1,83 @@
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+backend/venv/
+
+# Python cache & build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Cache
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.ruff_cache/
+
+# Node & Frontend dependencies / build artifacts
+node_modules/
+frontend/node_modules/
+frontend_1/node_modules/
+dist/
+dist-ssr/
+frontend/dist/
+frontend_1/dist/
+frontend_1/dist-ssr/
+.output/
+.vinxi/
+.tanstack/
+.nitro/
+.wrangler/
+.dev.vars
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files and credentials (CRITICAL: Never commit secrets)
+.env
+.env.*
+!.env.example
+*.local
+
+# Databases & local uploads
+*.db
+*.sqlite
+*.sqlite3
+uploads/
+
+# OS and Editor files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
